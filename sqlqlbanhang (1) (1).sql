@@ -75,4 +75,4 @@ GO
 	SoLuong int not null,
 	Primary key (MaHD,MaMon)
    );
-   
+   --đùa tý thôi
