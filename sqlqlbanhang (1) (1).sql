@@ -29,6 +29,7 @@ create table NHANVIEN
 	TrangThai bit not null,
 	HinhAnh varchar(255), -- địa chỉ nên không dấu
 	MatKhau varchar(100) not null
+
 );
 GO
 
@@ -76,3 +77,6 @@ GO
 	Primary key (MaHD,MaMon)
    );
    --đùa tý thôi
+   --them nhan vien
+     insert into NHANVIEN values (N'Võ Minh Chiến','minhchienhk38@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','1','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
+   insert into NHANVIEN values (N'Ngô Tất Tố','tattay@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','0','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
