@@ -18,7 +18,8 @@ GO
 
 create table NHANVIEN
 (
-	MaNV int identity primary key,
+	Id int identity,
+	MaNV varchar(20) primary key not null,
 	TenNV nvarchar(255) not null,
 	Email varchar(255) not null,
 	NgaySinh date not null,
@@ -66,7 +67,7 @@ GO
 	NgayLap date default GETDATE() not null,
 	TongTien nvarchar(100) not null,
 	MaBan int references  BAN(MaBan),
-	MaNV int references NHANVIEN(MaNV)
+	MaNV varchar(20) references NHANVIEN(MaNV)
  );
   
    create  table HOADONCHITIET
@@ -78,5 +79,6 @@ GO
    );
    --đùa tý thôi
    --them nhan vien
-     insert into NHANVIEN values (N'Võ Minh Chiến','minhchienhk38@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','1','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
-   insert into NHANVIEN values (N'Ngô Tất Tố','tattay@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','0','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
+  --   insert into NHANVIEN values (N'Võ Minh Chiến','minhchienhk38@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','1','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
+ --  insert into NHANVIEN values (N'Ngô Tất Tố','tattay@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','0','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
+   -- thủ tục danh sách bàn
