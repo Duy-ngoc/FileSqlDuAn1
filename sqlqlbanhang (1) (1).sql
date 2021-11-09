@@ -72,6 +72,7 @@ GO
   
    create  table HOADONCHITIET
    (
+	MaHoaDonChiTiet int identity,
 	MaHD int  references  HOADON(MaHD),
 	MaMon int  references  MONAN(MaMon),
 	SoLuong int not null,
@@ -81,4 +82,50 @@ GO
    --them nhan vien
      insert into NHANVIEN values (N'QT0001','Vo Minh Chien','minhchienhk38@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','1','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
   insert into NHANVIEN values (N'NV0001','Ngo Tat To','tattay@gmail.com','2002-08-21','1','Hà tĩnh','0985624685','0','1','\Resources\macdinh.png','E99A18C428CB38D5F260853678922E03')
-   
+   -- thủ tục danh sách bàn
+create proc sp_DanhSachBan
+as
+begin
+	select * from BAN
+end
+
+-- thủ tục tìm kiếm bàn theo tên
+create proc sp_TimKiemBan
+@TenBan nvarchar(50)
+as
+begin
+	select * from BAN where TenBan like '%'+@TenBan+'%'
+end
+exec  sp_TimKiemBan N'Bàn 1' 
+-- thủ tục thêm bàn
+create proc sp_ThemBan
+@TenBan nvarchar(50), @TrangThai bit
+as
+begin
+	insert into BAN values (@TenBan,@TrangThai) 
+end
+
+-- thủ tục cập nhật bàn
+create proc sp_CapNhatBan
+@ID int, @TenBan nvarchar(50), @TrangThai bit
+as
+begin
+	update BAN
+	set TenBan=@TenBan, TrangThai=@TrangThai
+	where MaBan=@ID
+end
+
+-- thủ tục xóa bàn
+create proc sp_XoaBan
+@ID int
+as
+begin
+	if exists(select * from HOADON where MaBan=@ID)
+		begin
+			update HOADON
+			set MaBan=null
+			where MaBan=@ID
+		end
+	delete from BAN
+	where MaBan=@ID
+end
